@@ -15,9 +15,10 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 add_executable(aoc2023_tests
     main.cpp
-    utility.hpp)
+    utility.hpp
+    day1.hpp)
 
-set_target_properties(aoc2023_tests PROPERTIES CXX_STANDARD 20)
+set_target_properties(aoc2023_tests PROPERTIES CXX_STANDARD 23)
 
 target_link_libraries(aoc2023_tests PRIVATE
     gtest

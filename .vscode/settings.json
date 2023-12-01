@@ -1,6 +1,10 @@
 {
     "cmake.sourceDirectory": "${workspaceFolder}/cpp",
     "cmake.buildDirectory": "${workspaceFolder}/cpp/build",
+    "cmake.configureArgs": [],
+    "cmake.debugConfig": {
+        "args": []
+    },
     "files.associations": {
         "algorithm": "cpp",
         "any": "cpp",
