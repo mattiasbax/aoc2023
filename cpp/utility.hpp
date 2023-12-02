@@ -32,7 +32,7 @@ std::vector<T> readInput( int day, std::function<T( std::string&& )> fPreProcess
     return input;
 }
 
-void processOnInput( int day, std::function<void( std::string&& )> fPreProcessData )
+void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData )
 {
     std::string filePath = std::filesystem::path( __FILE__ )
                                .remove_filename( )
@@ -52,13 +52,26 @@ void processOnInput( int day, std::function<void( std::string&& )> fPreProcessDa
     }
 }
 
-void day0( )
-{
-    std::vector<int> input = readInput<int>( 0, []( auto s ) { return std::stoi( s ); } );
-}
+class Day0 {
+public:
+    Day0( ) = default;
+
+    std::pair<int, int> Solve( )
+    {
+        processOnInput( 0, [ & ]( auto s ) { doSomethingOnString( s ); } );
+        return { 1, 2 };
+    }
+
+private:
+    void doSomethingOnString( const std::string& s ) { return; }
+};
 
 TEST( Day0, test_solution )
 {
-    day0( );
-    ASSERT_TRUE( true );
+    Day0 d0;
+    const auto [ partOne, partTwo ] = d0.Solve( );
+    std::cout << "Part one: " << partOne << std::endl;
+    ASSERT_EQ( partOne, 1 );
+    std::cout << "Part two: " << partOne << std::endl;
+    ASSERT_EQ( partTwo, 2 );
 }
