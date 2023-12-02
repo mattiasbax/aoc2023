@@ -1,3 +1,5 @@
+#pragma once
+
 #include <filesystem>
 #include <format>
 #include <fstream>
@@ -58,11 +60,12 @@ public:
 
     std::pair<int, int> Solve( )
     {
-        processOnInput( 0, [ & ]( auto s ) { doSomethingOnString( s ); } );
+        processOnInput( date, [ & ]( auto s ) { doSomethingOnString( s ); } );
         return { 1, 2 };
     }
 
 private:
+    static constexpr int date = 0;
     void doSomethingOnString( const std::string& s ) { return; }
 };
 

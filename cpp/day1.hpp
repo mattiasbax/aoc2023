@@ -33,7 +33,7 @@ public:
     int partTwo( )
     {
         int sumPartTwo = 0;
-        processOnInput( 1, [ & ]( auto s ) {
+        processOnInput( date, [ & ]( auto s ) {
             for ( size_t idx = 0; idx < s.size( ); ++idx ) {
                 if ( sizeOne.contains( s[ idx ] ) ) {
                     sumPartTwo += 10 * sizeOne[ s[ idx ] ];
@@ -94,6 +94,8 @@ public:
     }
 
 private:
+    static constexpr int date = 1;
+
     std::unordered_map<char, int> sizeOne{
         { '1', 1 }, { '2', 2 }, { '3', 3 }, { '4', 4 }, { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 }
     };
@@ -104,7 +106,6 @@ private:
 
 TEST( Day1, test_solution )
 {
-    // auto answer = day1( );
     Day1 d1;
     const auto [ partOne, partTwo ] = d1.Solve( );
     std::cout << "Part one: " << partOne << std::endl;
