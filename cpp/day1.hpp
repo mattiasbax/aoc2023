@@ -110,8 +110,6 @@ TEST( Day1, test_solution )
 {
     Day1 d1;
     const auto [ partOne, partTwo ] = d1.Solve( );
-    std::cout << "Part one: " << partOne << std::endl;
     ASSERT_EQ( partOne, 55386 );
-    std::cout << "Part two: " << partTwo << std::endl;
     ASSERT_EQ( partTwo, 54824 );
 }
