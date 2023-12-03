@@ -17,7 +17,8 @@ add_executable(aoc2023_tests
     main.cpp
     utility.hpp
     day1.hpp
-    day2.hpp)
+    day2.hpp
+    day3.hpp)
 
 set_target_properties(aoc2023_tests PROPERTIES CXX_STANDARD 23)
 

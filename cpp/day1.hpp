@@ -1,3 +1,5 @@
+#pragma once
+
 #include "utility.hpp"
 
 #include <algorithm>
@@ -13,7 +15,7 @@ public:
     int partOne( )
     {
         int sumPartOne = 0;
-        processOnInput( 1, [ & ]( auto s ) {
+        processOnInput( 1, [ & ]( const auto& s ) {
             for ( char c : s ) {
                 if ( sizeOne.contains( c ) ) {
                     sumPartOne += 10 * sizeOne[ c ];

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "utility.hpp"
 
 #include <unordered_map>
@@ -11,7 +13,7 @@ public:
         int gameCounter = 1;
         int sumPartOne = 0;
         int sumPartTwo = 0;
-        processOnInput( date, [ & ]( auto s ) {
+        processOnInput( date, [ & ]( const auto& s ) {
             // Part one
             if ( checkGameValidity( s ) ) {
                 sumPartOne += gameCounter;
