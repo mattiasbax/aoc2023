@@ -55,15 +55,15 @@ public:
         const std::string& winningNumbers = s.substr( begin + 2, end - begin - 3 );
         const std::string& numbers = s.substr( end + 2, s.size( ) );
 
-        std::string temp;
+        int temp;
         std::istringstream winningNumberStream( winningNumbers );
         while ( winningNumberStream >> temp ) {
-            st.winningNumbers.insert( std::stoi( temp ) );
+            st.winningNumbers.insert( temp );
         }
 
         std::istringstream numberStream( numbers );
         while ( numberStream >> temp ) {
-            st.numbers.push_back( std::stoi( temp ) );
+            st.numbers.push_back( temp );
         }
 
         return st;

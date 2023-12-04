@@ -11,32 +11,9 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-template <typename T>
-std::vector<T> readInput( int day, std::function<T( std::string&& )> fPreProcessData )
-{
-    std::vector<T> input;
-    std::string filePath = std::filesystem::path( __FILE__ )
-                               .remove_filename( )
-                               .append( std::format( "data/day{}.txt", std::to_string( day ) ) )
-                               .string( );
-    std::ifstream dataFile( filePath );
-
-    if ( dataFile.is_open( ) ) {
-        std::string line;
-        while ( std::getline( dataFile, line ) ) {
-            input.push_back( fPreProcessData( std::move( line ) ) );
-        }
-        dataFile.close( );
-    }
-    else {
-        std::cerr << "Unable to open file: " << filePath << std::endl;
-    }
-    return input;
-}
-
 void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData, bool testInput = false )
 {
-    std::string filePath =
+    const std::string filePath =
         std::filesystem::path( __FILE__ )
             .remove_filename( )
             .append( std::format( "data/day{}{}.txt", std::to_string( day ), testInput ? "_test" : "" ) )
@@ -46,7 +23,7 @@ void processOnInput( int day, std::function<void( const std::string& )> fPreProc
     if ( dataFile.is_open( ) ) {
         std::string line;
         while ( std::getline( dataFile, line ) ) {
-            fPreProcessData( std::move( line ) );
+            fPreProcessData( line );
         }
         dataFile.close( );
     }
