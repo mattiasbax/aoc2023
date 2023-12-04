@@ -13,27 +13,31 @@ class Day4 {
 public:
     Day4( ) = default;
 
-    std::pair<int, int> Solve( )
+    std::pair<int, int> Solve( bool testInput = false )
     {
         int sumPartOne = 0;
         int sumPartTwo = 0;
         int ticketNumber = 0;
         std::unordered_map<int, int> copies;
-        processOnInput( date, [ & ]( auto s ) {
-            const auto st = convertString( s );
-            int numberOfWinningNumbers = numberOfwinningNumbers( st );
+        processOnInput(
+            date,
+            [ & ]( auto s ) {
+                const auto st = convertString( s );
+                int numberOfWinningNumbers = numberOfwinningNumbers( st );
 
-            if ( numberOfWinningNumbers ) {
-                sumPartOne += static_cast<int>( std::pow( 2, numberOfWinningNumbers - 1 ) );
-            }
+                if ( numberOfWinningNumbers ) {
+                    sumPartOne += static_cast<int>( std::pow( 2, numberOfWinningNumbers - 1 ) );
+                }
 
-            copies[ ticketNumber ]++;
-            sumPartTwo += copies[ ticketNumber ];
-            for ( int i = 0; i < numberOfWinningNumbers; ++i ) {
-                copies[ ticketNumber + 1 + i ] += copies[ ticketNumber ];
-            }
-            ++ticketNumber;
-        } );
+                copies[ ticketNumber ]++;
+                sumPartTwo += copies[ ticketNumber ];
+                for ( int i = 0; i < numberOfWinningNumbers; ++i ) {
+                    copies[ ticketNumber + 1 + i ] += copies[ ticketNumber ];
+                }
+                ++ticketNumber;
+            },
+            testInput
+        );
 
         return { sumPartOne, sumPartTwo };
     }
@@ -84,6 +88,13 @@ TEST( Day4, convertString )
 {
     Day4 d4;
     ASSERT_EQ( 4, d4.numberOfwinningNumbers( d4.convertString( "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53" ) ) );
+}
+
+TEST( Day4, Test )
+{
+    Day4 d4;
+    const auto& [ partOne, partTwo ] = d4.Solve( true );
+    ASSERT_EQ( partTwo, 30 );
 }
 
 TEST( Day4, Solve )

@@ -34,12 +34,13 @@ std::vector<T> readInput( int day, std::function<T( std::string&& )> fPreProcess
     return input;
 }
 
-void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData )
+void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData, bool testInput = false )
 {
-    std::string filePath = std::filesystem::path( __FILE__ )
-                               .remove_filename( )
-                               .append( std::format( "data/day{}.txt", std::to_string( day ) ) )
-                               .string( );
+    std::string filePath =
+        std::filesystem::path( __FILE__ )
+            .remove_filename( )
+            .append( std::format( "data/day{}{}.txt", std::to_string( day ), testInput ? "_test" : "" ) )
+            .string( );
     std::ifstream dataFile( filePath );
 
     if ( dataFile.is_open( ) ) {
