@@ -1,0 +1,43 @@
+seeds: 79 14 55 13 -> 79-92 55-67
+       
+
+seed-to-soil map:
+50 98 2 -> source 98-100, dest 50-51, diff -48
+52 50 48 -> source 50-97, dest 52-100, diff +2
+
+79-92 -> 81-93
+55-67 -> 57-68
+
+soil-to-fertilizer map:
+0 15 37 -> source 15-51, dest 0-36, diff -15
+37 52 2 -> source 52-53, dest 37-38, diff -15
+39 0 15 -> source 0-14, dest 39-53, diff +39
+
+81-93 -> 81-93
+57-68 -> 57-68
+
+fertilizer-to-water map:
+49 53 8 -> source 53-60, dest 49-56, diff -4
+0 11 42 -> source 11-52, dest 0-41, diff -11
+42 0 7 -> source 0-6, dest 42-48, diff +42
+57 7 4 -> source 7-10, dest 57-60, diff +50
+
+81-93 -> 81-93
+57-68 -> 53-56 -> 61-68 
+         
+water-to-light map:
+88 18 7
+18 25 70
+
+light-to-temperature map:
+45 77 23
+81 45 19
+68 64 13
+
+temperature-to-humidity map:
+0 69 1
+1 0 69
+
+humidity-to-location map:
+60 56 37
+56 93 4
