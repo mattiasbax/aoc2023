@@ -177,7 +177,7 @@ TEST( Day3, checkIfNumberHasNeighboringSymbol )
     ASSERT_FALSE( d3.checkIfNumberHasNeighboringSymbol( n2, rowNumber ) );
 }
 
-TEST( Day3, solve )
+TEST( Solve, day_3 )
 {
     Day3 d3;
     const auto [ partOne, partTwo ] = d3.Solve( );

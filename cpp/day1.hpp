@@ -106,7 +106,7 @@ private:
     std::unordered_map<std::string, int> sizeFive{ { "three", 3 }, { "seven", 7 }, { "eight", 8 } };
 };
 
-TEST( Day1, test_solution )
+TEST( Solve, day_1 )
 {
     Day1 d1;
     const auto [ partOne, partTwo ] = d1.Solve( );

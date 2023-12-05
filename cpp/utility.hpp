@@ -47,7 +47,7 @@ private:
     void doSomethingOnString( const std::string& s ) { return; }
 };
 
-TEST( Day0, test_solution )
+TEST( Solve, day_0 )
 {
     Day0 d0;
     const auto [ partOne, partTwo ] = d0.Solve( );

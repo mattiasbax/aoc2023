@@ -97,7 +97,7 @@ TEST( Day4, Test )
     ASSERT_EQ( partTwo, 30 );
 }
 
-TEST( Day4, Solve )
+TEST( Solve, day_4 )
 {
     Day4 d4;
     const auto& [ partOne, partTwo ] = d4.Solve( );

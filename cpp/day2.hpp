@@ -125,7 +125,7 @@ TEST( Day2, countPowerOfFewestCubes )
     ASSERT_EQ( 36, d2.countPowerOfFewestCubes( "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green" ) );
 }
 
-TEST( Day2, solve )
+TEST( Solve, day_2 )
 {
     Day2 d2;
     const auto [ partOne, partTwo ] = d2.Solve( );
