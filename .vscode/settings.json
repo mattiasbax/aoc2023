@@ -82,6 +82,7 @@
         "xutility": "cpp",
         "filesystem": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "numeric": "cpp"
     }
 }
