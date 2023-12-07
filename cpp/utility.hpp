@@ -38,7 +38,9 @@ public:
 
     std::pair<int, int> Solve( bool runOnTestInput = false )
     {
-        processOnInput( date, [ & ]( auto s ) { doSomethingOnString( s ); } );
+        processOnInput(
+            date, [ & ]( auto s ) { doSomethingOnString( s ); }, runOnTestInput
+        );
         return { 1, 2 };
     }
 

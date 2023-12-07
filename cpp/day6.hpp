@@ -55,7 +55,7 @@ public:
         }
         long long distanceValue = std::stoll( dStream.str( ) );
 
-        int sumPartTwo = calculateNumberOfRaceOptions( timesValue, distanceValue );
+        int sumPartTwo = static_cast<int>( calculateNumberOfRaceOptions( timesValue, distanceValue ) );
 
         return { sumPartOne, sumPartTwo };
     }
