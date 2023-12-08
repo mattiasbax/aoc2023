@@ -5,6 +5,7 @@
 #include "day5.hpp"
 #include "day6.hpp"
 #include "day7.hpp"
+#include "day8.hpp"
 
 #include <iostream>
 
