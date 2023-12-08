@@ -75,17 +75,7 @@ public:
 
     class Hand {
     public:
-        enum class Type {
-            HighCard,
-            OnePair,
-            TwoPair,
-            ThreeOfAKind,
-            FullHouse,
-            FourOfAKind,
-            FiveOfAKind
-        };
-
-        Type getType( std::string cards, bool withWildCards )
+        std::pair<int, int> getType( std::string cards, bool withWildCards )
         {
             std::unordered_map<char, int> cardCount;
             for ( auto card : cards ) {
@@ -95,39 +85,28 @@ public:
             if ( withWildCards )
                 cardCount[ 'J' ] = 0;
 
-            std::vector<int> counts( 6, 0 );
+            std::vector<int> counts;
             for ( const auto& [ _, count ] : cardCount ) {
-                counts[ count ]++;
+                counts.push_back( count );
             }
+            std::ranges::sort( counts, []( int lhs, int rhs ) { return lhs > rhs; } );
 
-            if ( counts[ 5 ] || nrOfWildCards == 5 || counts[ 4 ] && nrOfWildCards == 1
-                 || counts[ 3 ] && nrOfWildCards == 2 || counts[ 2 ] && nrOfWildCards == 3
-                 || counts[ 1 ] && nrOfWildCards == 4 )
-                return Type::FiveOfAKind;
-            else if ( counts[ 4 ] || counts[ 3 ] && nrOfWildCards == 1 || counts[ 2 ] && nrOfWildCards == 2 || counts[ 1 ] && nrOfWildCards == 3 )
-                return Type::FourOfAKind;
-            else if ( counts[ 3 ] && counts[ 2 ] || counts[ 2 ] == 2 && nrOfWildCards == 1 )
-                return Type::FullHouse;
-            else if ( counts[ 3 ] || counts[ 2 ] && nrOfWildCards == 1 || counts[ 1 ] && nrOfWildCards == 2 )
-                return Type::ThreeOfAKind;
-            else if ( counts[ 2 ] == 2 || nrOfWildCards == 2 )
-                return Type::TwoPair;
-            else if ( counts[ 2 ] || nrOfWildCards == 1 )
-                return Type::OnePair;
+            if ( counts.size( ) == 1 )
+                return { counts[ 0 ] + nrOfWildCards, 0 };
             else
-                return Type::HighCard;
+                return { counts[ 0 ] + nrOfWildCards, counts[ 1 ] };
         }
 
         Hand( std::string cards, int bid, bool withWildCards = false ) :
             mCards( cards ),
             mBid( bid ),
-            mType( getType( cards, withWildCards ) )
+            mStrength( getType( cards, withWildCards ) )
         {
         }
 
         bool isLesserThan( const Hand& rhs, std::unordered_map<char, int>& cardValues ) const
         {
-            if ( mType == rhs.mType ) {
+            if ( mStrength == rhs.mStrength ) {
                 int idx = 0;
                 while ( mCards[ idx ] == rhs.mCards[ idx ] ) {
                     ++idx;
@@ -135,13 +114,13 @@ public:
                 return cardValues[ mCards[ idx ] ] < cardValues[ rhs.mCards[ idx ] ];
             }
             else {
-                return mType < rhs.mType;
+                return mStrength < rhs.mStrength;
             }
         }
 
         bool isGreaterThan( const Hand& rhs, std::unordered_map<char, int>& cardValues ) const
         {
-            if ( mType == rhs.mType ) {
+            if ( mStrength == rhs.mStrength ) {
                 int idx = 0;
                 while ( mCards[ idx ] == rhs.mCards[ idx ] ) {
                     ++idx;
@@ -149,13 +128,13 @@ public:
                 return cardValues[ mCards[ idx ] ] > cardValues[ rhs.mCards[ idx ] ];
             }
             else {
-                return mType > rhs.mType;
+                return mStrength > rhs.mStrength;
             }
         }
 
         std::string mCards;
         int mBid;
-        Type mType;
+        std::pair<int, int> mStrength;
     };
 
     Hand createHand( std::string& s, bool withWildCards )
@@ -177,22 +156,22 @@ private:
 TEST( Day7, createHand )
 {
     Day7::Hand h1( "32T3K", 765 );
-    ASSERT_EQ( h1.mType, Day7::Hand::Type::OnePair );
+    ASSERT_EQ( h1.mStrength, std::pair( 2, 1 ) );
 
     Day7::Hand h2( "T55J5", 684 );
-    ASSERT_EQ( h2.mType, Day7::Hand::Type::ThreeOfAKind );
+    ASSERT_EQ( h2.mStrength, std::pair( 3, 1 ) );
 
     Day7::Hand h3( "KK677", 684 );
-    ASSERT_EQ( h3.mType, Day7::Hand::Type::TwoPair );
+    ASSERT_EQ( h3.mStrength, std::pair( 2, 2 ) );
 
     Day7::Hand h4( "KTJJT", 684 );
-    ASSERT_EQ( h4.mType, Day7::Hand::Type::TwoPair );
+    ASSERT_EQ( h4.mStrength, std::pair( 2, 2 ) );
 
     Day7::Hand h5( "QQQJA", 684 );
-    ASSERT_EQ( h5.mType, Day7::Hand::Type::ThreeOfAKind );
+    ASSERT_EQ( h5.mStrength, std::pair( 3, 1 ) );
 
     Day7::Hand h6( "2345J", 333, true );
-    ASSERT_EQ( h6.mType, Day7::Hand::Type::OnePair );
+    ASSERT_EQ( h6.mStrength, std::pair( 2, 1 ) );
 }
 
 TEST( Day7, compare )
