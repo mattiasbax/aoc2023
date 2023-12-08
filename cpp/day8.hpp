@@ -18,7 +18,7 @@ public:
     std::unordered_map<std::string, Paths> routeGraph;
     std::string instructions;
 
-    std::pair<int, int> Solve( bool runOnTestInput = false )
+    std::pair<int, int> Solve( int runOnTestInput = 0 )
     {
         processOnInput(
             date,
@@ -74,14 +74,14 @@ TEST( Day8, addToRouteGraph )
 TEST( Day8, Test )
 {
     Day8 d8;
-    const auto [ partOne, _ ] = d8.Solve( true );
+    const auto [ partOne, _ ] = d8.Solve( 1 );
     ASSERT_EQ( partOne, 6 );
 }
 
 TEST( Day8, Test_2 )
 {
     Day8 d8;
-    const auto [ _, partTwo ] = d8.Solve( true );
+    const auto [ _, partTwo ] = d8.Solve( 2 );
     ASSERT_EQ( partTwo, 6 );
 }
 

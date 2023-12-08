@@ -13,12 +13,12 @@ class Day5 {
 public:
     Day5( ) = default;
 
-    std::pair<long long, long long> Solve( bool runOnTestInput = false )
+    std::pair<long long, long long> Solve( int runOnTestInput = 0 )
     {
         return { partOne( runOnTestInput ), partTwo( runOnTestInput ) };
     }
 
-    long long partOne( bool runOnTestInput = false )
+    long long partOne( int runOnTestInput = 0 )
     {
         enum class State {
             ExtractingSeeds,
@@ -76,7 +76,7 @@ public:
         ).first;
     }
 
-    long long partTwo( bool runOnTestInput = false )
+    long long partTwo( int runOnTestInput = 0 )
     {
         enum class State {
             ExtractingSeeds,
@@ -168,7 +168,7 @@ private:
 TEST( Day5, Test )
 {
     Day5 d5;
-    const auto [ partOne, partTwo ] = d5.Solve( true );
+    const auto [ partOne, partTwo ] = d5.Solve( 1 );
     ASSERT_EQ( partOne, 35 );
     // ASSERT_EQ( partTwo, 82 );
 }

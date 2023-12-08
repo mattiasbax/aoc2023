@@ -11,13 +11,17 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData, bool testInput = false )
+void processOnInput( int day, std::function<void( const std::string& )> fPreProcessData, int testInput = 0 )
 {
-    const std::string filePath =
-        std::filesystem::path( __FILE__ )
-            .remove_filename( )
-            .append( std::format( "data/day{}{}.txt", std::to_string( day ), testInput ? "_test" : "" ) )
-            .string( );
+    const std::string filePath = std::filesystem::path( __FILE__ )
+                                     .remove_filename( )
+                                     .append( std::format(
+                                         "data/day{}{}{}.txt",
+                                         std::to_string( day ),
+                                         testInput ? "_test" : "",
+                                         testInput ? std::to_string( testInput ) : ""
+                                     ) )
+                                     .string( );
     std::ifstream dataFile( filePath );
 
     if ( dataFile.is_open( ) ) {
@@ -53,8 +57,6 @@ TEST( Solve, day_0 )
 {
     Day0 d0;
     const auto [ partOne, partTwo ] = d0.Solve( );
-    std::cout << "Part one: " << partOne << std::endl;
     ASSERT_EQ( partOne, 1 );
-    std::cout << "Part two: " << partOne << std::endl;
     ASSERT_EQ( partTwo, 2 );
 }

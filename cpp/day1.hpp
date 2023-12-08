@@ -15,7 +15,7 @@ public:
     int partOne( )
     {
         int sumPartOne = 0;
-        processOnInput( 1, [ & ]( const auto& s ) {
+        processOnInput( date, [ & ]( const auto& s ) {
             for ( char c : s ) {
                 if ( sizeOne.contains( c ) ) {
                     sumPartOne += 10 * sizeOne[ c ];

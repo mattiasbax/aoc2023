@@ -15,7 +15,7 @@ public:
     std::vector<int> times;
     std::vector<int> distances;
 
-    std::pair<int, int> Solve( bool runOnTestInput = false )
+    std::pair<int, int> Solve( int runOnTestInput = 0 )
     {
         processOnInput(
             date,
@@ -90,7 +90,7 @@ TEST( Day6, calculateNumberOfRaceOptions )
 TEST( Day6, Test )
 {
     Day6 d6;
-    const auto [ partOne, partTwo ] = d6.Solve( true );
+    const auto [ partOne, partTwo ] = d6.Solve( 1 );
     ASSERT_EQ( 288, partOne );
     ASSERT_EQ( 71503, partTwo );
 }

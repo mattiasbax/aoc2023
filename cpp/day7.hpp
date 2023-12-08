@@ -44,7 +44,7 @@ class Day7 {
 public:
     Day7( ) = default;
 
-    std::pair<int, int> Solve( bool runOnTestInput = false )
+    std::pair<int, int> Solve( int runOnTestInput = 0 )
     {
         std::vector<Hand> hands;
         std::vector<Hand> handsWithJokers;
@@ -191,7 +191,7 @@ TEST( Day7, compare )
 TEST( Day7, Test )
 {
     Day7 d7;
-    const auto [ partOne, partTwo ] = d7.Solve( true );
+    const auto [ partOne, partTwo ] = d7.Solve( 1 );
     ASSERT_EQ( partOne, 6440 );
     ASSERT_EQ( partTwo, 5905 );
 }

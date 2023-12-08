@@ -13,7 +13,7 @@ class Day4 {
 public:
     Day4( ) = default;
 
-    std::pair<int, int> Solve( bool testInput = false )
+    std::pair<int, int> Solve( int testInput = 0 )
     {
         int sumPartOne = 0;
         int sumPartTwo = 0;
@@ -93,7 +93,7 @@ TEST( Day4, convertString )
 TEST( Day4, Test )
 {
     Day4 d4;
-    const auto& [ partOne, partTwo ] = d4.Solve( true );
+    const auto& [ partOne, partTwo ] = d4.Solve( 1 );
     ASSERT_EQ( partTwo, 30 );
 }
 
