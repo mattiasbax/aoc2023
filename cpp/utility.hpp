@@ -40,7 +40,7 @@ class Day0 {
 public:
     Day0( ) = default;
 
-    std::pair<int, int> Solve( bool runOnTestInput = false )
+    std::pair<int, int> Solve( int runOnTestInput = 0 )
     {
         processOnInput(
             date, [ & ]( auto s ) { doSomethingOnString( s ); }, runOnTestInput
