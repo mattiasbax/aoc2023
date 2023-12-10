@@ -24,7 +24,8 @@ add_executable(aoc2023_tests
     day6.hpp
     day7.hpp
     day8.hpp
-    day9.hpp)
+    day9.hpp
+    day10.hpp)
 
 set_target_properties(aoc2023_tests PROPERTIES CXX_STANDARD 20)
 
